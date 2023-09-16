@@ -20,6 +20,8 @@ jobs:
            python-version: 3.11
       - name: Install requirements
         run: |
+            pip install -r black
+        run: |
             pip install -r flake8
         run: |
             pip install -r requirements.txt
