@@ -21,6 +21,9 @@ jobs:
       - name: Install flake8
         run: |
               pip install flake8
+      - name: Install black
+        run: |
+              pip install black
       - name: Install requirements
         run: |
             pip install -r requirements.txt
