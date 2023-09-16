@@ -9,7 +9,7 @@ on:
         branches: [main]
 
 jobs:
-  simple_build:
+  core_base_build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout CMP code
