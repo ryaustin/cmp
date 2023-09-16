@@ -1,4 +1,4 @@
-name: Django Test
+name: cmp-django-base-build
 
 on:
     workflow_call:
@@ -12,8 +12,8 @@ jobs:
   simple_build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout CMP code
+        uses: actions/checkout@v4
       - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
