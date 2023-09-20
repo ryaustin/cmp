@@ -1,4 +1,5 @@
 Django==4.2.5
+python-dotenv
 pytest-django
 pytest-cov # used to generate coverage report
 flake8 # used to check code style
