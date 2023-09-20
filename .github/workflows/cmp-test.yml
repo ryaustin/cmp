@@ -1,4 +1,6 @@
 name: cmp-django-base-build
+env:
+  SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
 
 on:
     workflow_call:
