@@ -14,6 +14,8 @@ coverage[toml]==7.3.1
     # via pytest-cov
 django==4.2.5
     # via -r requirements.in
+django-environ==0.11.2
+    # via -r requirements.in
 flake8==6.1.0
     # via -r requirements.in
 iniconfig==2.0.0
@@ -43,8 +45,6 @@ pytest==7.4.2
 pytest-cov==4.1.0
     # via -r requirements.in
 pytest-django==4.5.2
-    # via -r requirements.in
-python-dotenv==1.0.0
     # via -r requirements.in
 sqlparse==0.4.4
     # via django
