@@ -3,6 +3,9 @@ env:
   SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
   SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 
+permissions:
+  pull-requests: write
+
 on:
     workflow_call:
     workflow_dispatch:
@@ -33,5 +36,19 @@ jobs:
       - name: Run tests
         run: |
             python manage.py test
-            
+      - name: Run test with coverage report
+        run: |
+            pytest
+      - name: CMP Pytest Coverage Report
+        uses: orgoro/coverage@v3.1
+        with:
+          coverageFile: coverage.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Artifact Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+            name: coverage-report
+            path: |
+              coverage.xml
 
