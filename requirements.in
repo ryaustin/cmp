@@ -1,5 +1,6 @@
 Django==4.2.5
 django-environ
+django-debug-toolbar
 pytest-django
 sentry-sdk
 pytest-cov # used to generate coverage report
