@@ -1,5 +1,8 @@
 from django.shortcuts import render, HttpResponse
 
+from IPython import embed
+
+
 # Create your views here.
 
 def  index(request):
@@ -188,6 +191,7 @@ def original_unit(request, army_number):
     for unit in army_number_index:
         # Uncomment this breakpoint to work with ipdb:
         #breakpoint()
+        #embed()
         original_unit = belongsTo(army_number, army_number_index[unit][0], army_number_index[unit][1]  )
         if original_unit is True:
             return unit

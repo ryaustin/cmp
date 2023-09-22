@@ -1,6 +1,49 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
+from cmp.views import original_unit, belongsTo
+
+class TestOriginalUnit(TestCase):
+    def test_original_unit_with_input_2(self):
+        # Define the input
+        input_value = 2
+
+        # Define the expected output
+        expected_output = "Royal Army Service Corps (Block 1)"
+
+        # Call the original_unit function with the input
+        result = original_unit(None, input_value)
+
+        # Use assert to check if the result matches the expected output
+        assert result == expected_output
+
+    def test_original_unit_with_input_1(self):
+        # Define the input
+        input_value = 1
+
+        # Define the expected output
+        expected_output = "Royal Army Service Corps (Block 1)"
+
+        # Call the original_unit function with the input
+        result = original_unit(None, input_value)
+
+        # Use assert to check if the result matches the expected output
+        assert result == expected_output
+
+    def test_original_unit_with_input_22199408(self):
+        # Define the input
+        input_value = 22199408
+
+        # Define the expected output
+        expected_output = "Until October 1950"
+
+        # Call the original_unit function with the input
+        result = original_unit(None, input_value)
+
+        # Use assert to check if the result matches the expected output
+        assert result == expected_output
+
+
 
 class UsersManagersTests(TestCase):
     def test_create_user(self):
