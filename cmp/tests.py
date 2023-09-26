@@ -4,6 +4,20 @@ from django.test import TestCase
 from cmp.views import original_unit, belongsTo
 
 class TestOriginalUnit(TestCase):
+
+    def test_original_unit_with_input_0(self):
+        # Define the input
+        input_value = 0
+
+        # Define the expected output
+        expected_output = "No Match found"
+
+        # Call the original_unit function with the input
+        result = original_unit(None, input_value)
+
+        # Use assert to check if the result matches the expected output
+        assert result.lower() == expected_output.lower()
+
     def test_original_unit_with_input_2(self):
         # Define the input
         input_value = 2
