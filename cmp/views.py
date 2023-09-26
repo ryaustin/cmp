@@ -194,5 +194,5 @@ def original_unit(request, army_number):
         #embed()
         original_unit = belongsTo(army_number, army_number_index[unit][0], army_number_index[unit][1]  )
         if original_unit is True:
-            return unit
-    return "No Match Found"
+            return HttpResponse(unit)
+    return HttpResponse("No Match Found")
