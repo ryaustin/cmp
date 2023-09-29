@@ -10,13 +10,13 @@ class TestOriginalUnit(TestCase):
         input_value = 0
 
         # Define the expected output
-        expected_output = "No Match found"
+        expected_output = "No Match Found"
 
         # Call the original_unit function with the input
         result = original_unit(None, input_value)
 
         # Use assert to check if the result matches the expected output
-        assert result.lower() == expected_output.lower()
+        self.assertContains(result, expected_output)
 
     def test_original_unit_with_input_2(self):
         # Define the input
@@ -29,7 +29,7 @@ class TestOriginalUnit(TestCase):
         result = original_unit(None, input_value)
 
         # Use assert to check if the result matches the expected output
-        assert result == expected_output
+        self.assertContains(result, expected_output)
 
     def test_original_unit_with_input_1(self):
         # Define the input
@@ -42,7 +42,8 @@ class TestOriginalUnit(TestCase):
         result = original_unit(None, input_value)
 
         # Use assert to check if the result matches the expected output
-        assert result == expected_output
+        self.assertContains(result, expected_output)
+
 
     def test_original_unit_with_input_22199408(self):
         # Define the input
@@ -55,8 +56,7 @@ class TestOriginalUnit(TestCase):
         result = original_unit(None, input_value)
 
         # Use assert to check if the result matches the expected output
-        assert result == expected_output
-
+        self.assertContains(result, expected_output)
 
 
 class UsersManagersTests(TestCase):
