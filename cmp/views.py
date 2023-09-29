@@ -14,11 +14,13 @@ def trigger_error(request):
     division_by_zero = 1 / 0
 
 
-def belongsTo(value, rangeStart, rangeEnd):
-        if value >= rangeStart and value <= rangeEnd:
-            return True
-        else:
-            return False
+def belongsTo(value: int, rangeStart: int, rangeEnd: int):
+    if type(value) != int:
+        return False
+    elif value >= rangeStart and value <= rangeEnd:
+        return True
+    else:
+        return False
 
 
 def original_unit(request, army_number):
