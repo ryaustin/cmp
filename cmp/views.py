@@ -9,6 +9,9 @@ def  index(request):
     return HttpResponse("home")
 
 
+def army_number_search(request):
+    return render(request, 'cmp/army-number-search.html')
+
 def trigger_error(request):
     """error for Sentry"""
     division_by_zero = 1 / 0
