@@ -14,11 +14,13 @@ def trigger_error(request):
     division_by_zero = 1 / 0
 
 
-def belongsTo(value, rangeStart, rangeEnd):
-        if value >= rangeStart and value <= rangeEnd:
-            return True
-        else:
-            return False
+def belongsTo(value: int, rangeStart: int, rangeEnd: int):
+    if type(value) != int:
+        return False
+    elif value >= rangeStart and value <= rangeEnd:
+        return True
+    else:
+        return False
 
 
 def original_unit(request, army_number):
@@ -194,5 +196,5 @@ def original_unit(request, army_number):
         #embed()
         original_unit = belongsTo(army_number, army_number_index[unit][0], army_number_index[unit][1]  )
         if original_unit is True:
-            return unit
-    return "No Match Found"
+            return HttpResponse(unit)
+    return HttpResponse("No Match Found")
