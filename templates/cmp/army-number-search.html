@@ -4,7 +4,7 @@
 
 <div>
 {% load static %}
-<img src="/static/cmp/flag.svg" style="width:25%; height:auto;" alt="The Flag of the British Army. A lion wearing a crown on two crossed swords. ">
+<img src="/static/cmp/flag.svg" style="width:20%; height:auto;" alt="The Flag of the British Army. A lion wearing a crown on two crossed swords. ">
 <p></p>
 <h2> British Army Number Search Tool</h2>
 <p>
@@ -13,5 +13,11 @@ This search tool can match army numbers from the 1920's to the end of World War 
 <p>
 Enter an army number to find out what unit/regiment block the number was assigned from (upto WW2) or approximately when the soldier joined the army (post WW2).
 </p>
+</div>
+<div>
+    <form action="{% url 'army-number-search' %}" method="get">
+        <input type="text" name="q" placeholder="Enter army number" value="787569" class="input-text">
+        <input type="submit" value="Search">
+    </form>
 </div>
 {% endblock %}
