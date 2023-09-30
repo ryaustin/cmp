@@ -31,6 +31,22 @@ class TestOriginalUnit(TestCase):
         # Use assert to check if the result matches the expected output
         self.assertContains(result, expected_output)
 
+
+    def test_original_unit_with_input_7875698(self):
+        # Define the input
+        input_value = 7875698
+
+        # Define the expected output
+        expected_output = "Royal Tank Regiment"
+
+        # Call the original_unit function with the input
+        result = original_unit(None, input_value)
+
+        # Use assert to check if the result matches the expected output
+        self.assertContains(result, expected_output)
+
+
+
     def test_original_unit_with_input_1(self):
         # Define the input
         input_value = 1
