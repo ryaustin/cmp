@@ -3,7 +3,6 @@ django-environ
 django-debug-toolbar
 pytest-django
 sentry-sdk
-ipython==8.13
 pytest-cov # used to generate coverage report
 flake8 # used to check code style
 black # used to format code
