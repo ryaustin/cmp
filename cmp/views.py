@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 
-from IPython import embed
+#from IPython import embed
 
 
 # Create your views here.
