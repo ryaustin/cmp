@@ -38,8 +38,7 @@ SECRET_KEY = env('SECRET_KEY')
 # DEBUG = True
 DEBUG = env('DEBUG')
 
-
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["cmp-production.up.railway.app", "*"]
 
 INTERNAL_IPS = [
     # ...
