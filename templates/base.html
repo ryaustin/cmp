@@ -8,21 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap" rel="stylesheet">
-{% block styles %}
-<style>
-    body {
-        font-family: 'IM Fell English', serif;
-        margin-left: 13%;
-        margin-right: 13%;
-        margin-top: 5%;
-    }
-    .input-text {
-    font-size: 24px;
-    color: #8B0000 ;
-    padding: 7px;
-}
-</style>
-{% endblock %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'cmp/css/base.css' %}">
+
 </head>
 <body>
     {% block content %}{% endblock %}
