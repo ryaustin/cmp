@@ -7,7 +7,7 @@ from django.shortcuts import render, HttpResponse
 
 
 def index(request):
-    return HttpResponse("home")
+    return render(request, "cmp/index.html")
 
 
 def army_number_search(request):

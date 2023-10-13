@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Corps of Military Police{% endblock %}
+{% block content %}
+
+<div>
+<h1> Corps of Military Police</h1>
+<img src="{% static 'cmp/cmp-masthead.svg' %}" style="width:600px; height:auto;" alt="The colours of the Royal Military Police">
+<p></p>
+<h2> Casualties, Honours & Decorations, Prisoners of War</h2>
+<p>
+</p> 
+<p>
+</p>
+</div>
+<div>
+    <form method="post" hx-post="{% url 'index' %}" hx-target="#query-response">
+        {% csrf_token %}
+        <input type="text" name="q" placeholder="Enter surname or army number" class="input-text">
+        <input type="submit" value="Search" class="btn btn-secondary">
+    </form>
+</div>
+<div class="response-text" id="soldier-search"></div>
+{% endblock %}
