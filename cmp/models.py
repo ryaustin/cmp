@@ -16,3 +16,14 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+
+
+class Country(models.Model):
+    name = models.CharField(max_length=50)
+    old_id = models.IntegerField(null=True, blank=True)
+    alpha2  = models.CharField(max_length=2, null=False, blank=False)
+    alpha3  = models.CharField(max_length=3, null=False, blank=False)
+
+    def __str__(self):
+        return self.name
+
