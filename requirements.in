@@ -7,3 +7,4 @@ sentry-sdk
 pytest-cov # used to generate coverage report
 flake8 # used to check code style
 black # used to format code
+whitenoise
