@@ -1,8 +1,8 @@
 from django.shortcuts import render, HttpResponse
 
+from .forms import editCountryForm
+
 # from IPython import embed
-
-
 # Create your views here.
 
 
@@ -214,3 +214,12 @@ def original_unit(request, army_number):
         if original_unit is True:
             return HttpResponse(unit)
     return HttpResponse("No Match Found")
+
+
+def edit_countries(request):
+    post = request.POST
+    form = editCountryForm(post or None)
+    if post and form.is_valid():
+        form.save()
+        return HttpResponse("Country Added")
+    return render(request, "cmp/edit-countries.html", {"form": form})

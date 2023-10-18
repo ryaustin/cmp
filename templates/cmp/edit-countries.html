@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Country Form{% endblock %}
+{% block content %}
+
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.management_form }}
+        {{ form.errors }}
+        {{form}}
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+    </div>
+
+{% endblock %}
