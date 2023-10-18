@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_htmx",
     "cmp",
+    "crispy_forms",
+
 ]
 
 MIDDLEWARE = [
