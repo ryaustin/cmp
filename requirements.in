@@ -10,3 +10,4 @@ black # used to format code
 whitenoise
 django-crispy-forms
 crispy-bootstrap5
+ipdb
