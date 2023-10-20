@@ -9,3 +9,4 @@ flake8 # used to check code style
 black # used to format code
 whitenoise
 django-crispy-forms
+crispy-bootstrap5
