@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static crispy_forms_tags %}
 {% block title %}Country Form{% endblock %}
 {% block content %}
 
@@ -8,7 +8,7 @@
         {% csrf_token %}
         {{ form.management_form }}
         {{ form.errors }}
-        {{form}}
+        {{form | crispy}}
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 
