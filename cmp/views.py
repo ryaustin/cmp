@@ -1,10 +1,6 @@
 from django.shortcuts import render, HttpResponse
 
-from .forms import editCountryForm
-
-# from IPython import embed
-# Create your views here.
-
+from cmp.forms import editCountryForm
 
 def index(request):
     return render(request, "cmp/index.html")
@@ -18,7 +14,6 @@ def army_number_search(request):
         except ValueError:
             return HttpResponse("Please enter a valid Army Number")
         return original_unit(request, army_number)
-
     return render(request, "cmp/army-number-search.html")
 
 
@@ -219,6 +214,7 @@ def original_unit(request, army_number):
 def edit_countries(request):
     post = request.POST
     form = editCountryForm(post or None)
+    breakpoint()
     if post and form.is_valid():
         form.save()
         return HttpResponse("Country Added")
