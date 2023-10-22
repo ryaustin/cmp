@@ -34,6 +34,7 @@ django==4.2.5
     #   crispy-bootstrap5
     #   django-crispy-forms
     #   django-debug-toolbar
+    #   django-extensions
     #   django-htmx
 django-crispy-forms==2.1
     # via
@@ -42,6 +43,8 @@ django-crispy-forms==2.1
 django-debug-toolbar==4.2.0
     # via -r requirements.in
 django-environ==0.11.2
+    # via -r requirements.in
+django-extensions==3.2.3
     # via -r requirements.in
 django-htmx==1.16.0
     # via -r requirements.in

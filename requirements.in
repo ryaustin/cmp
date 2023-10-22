@@ -1,6 +1,7 @@
 Django==4.2.5
 django-environ
 django-debug-toolbar
+django-extensions
 django-htmx
 pytest-django
 sentry-sdk
