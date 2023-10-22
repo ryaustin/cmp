@@ -1,6 +1,14 @@
 from django.shortcuts import render, HttpResponse
 
+from .models import Country
+
 from cmp.forms import editCountryForm
+
+
+def countries(request):
+    countries = Country.objects.all()
+    return render(request, 'cmp/countries.html', {'countries': countries})
+
 
 def index(request):
     return render(request, "cmp/index.html")
