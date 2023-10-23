@@ -16,6 +16,15 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.email
 
+class Rank(models.Model):
+    RankTypes = (('OR','Other Rank'),('NC','Non Commisioned Officer'),('OF','Officer'))
+    Name = models.CharField(max_length=50, unique=True)
+    Abbreviation = models.CharField(max_length=50, blank=True)
+    Class = models.CharField(max_length=2, blank=True, choices=RankTypes,default='Other Rank')
+
+    def __str__(self):
+        return self.Name
+        
 
 class Country(models.Model):
     name_common = models.CharField(max_length=255, unique=False, default='')
