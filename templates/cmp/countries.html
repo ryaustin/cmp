@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static crispy_forms_tags %}
+{% block title %}Countries{% endblock %}
+{% block content %}
+
+<h1>Countries</h1>
+
+<table>
+    <thead>
+      <tr>
+        <th>Common Name</th>
+        <th>Flag</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for country in countries %}
+        <tr>
+          <td>{{ country.name_common }}</td>
+          <td><h2>{{ country.flag }}</h2></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+{% endblock %}
