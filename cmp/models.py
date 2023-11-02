@@ -95,7 +95,7 @@ class Cemetery(models.Model):
     # 1
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, unique=True, default='')
-    country = models.ForeignKey('Country', on_delete=models.CASCADE)
+    country = models.ForeignKey('Country', to_field='ccn3', on_delete=models.CASCADE)
     latitude = models.FloatField() # latitude
     longitude = models.FloatField() # longitude 
 

@@ -6,6 +6,14 @@ from cmp.forms import editCountryForm
 from .models import Rank
 from cmp.forms import editRankForm
 
+from .models import Cemetery 
+from cmp.forms import editCemeteryForm
+
+
+def cemeteries(request):
+    cemeteries = Cemetery.objects.all()
+    return render(request, 'cmp/cemeteries.html', {'cemeteries': cemeteries})
+
 
 def countries(request):
     countries = Country.objects.all()
@@ -224,6 +232,15 @@ def original_unit(request, army_number):
         if original_unit is True:
             return HttpResponse(unit)
     return HttpResponse("No Match Found")
+
+
+def edit_cemeteries(request):
+    post = request.POST
+    form = editCemeteryForm(post or None)
+    if post and form.is_valid():
+        form.save()
+        return HttpResponse("Cemetery Added")
+    return render(request, "cmp/edit-cemeteries.html", {"form": form})
 
 
 def edit_countries(request):
