@@ -3,6 +3,7 @@ from django import forms
 
 from .models import CustomUser
 from .models import Country
+from .models import Rank
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -20,3 +21,9 @@ class editCountryForm(forms.ModelForm):
     class Meta:
         model = Country
         fields = "__all__"
+
+class editRankForm(forms.ModelForm):
+    class Meta:
+        model = Rank
+        fields = "__all__"
+

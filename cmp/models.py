@@ -17,16 +17,106 @@ class CustomUser(AbstractUser):
         return self.email
 
 class Rank(models.Model):
-    RankTypes = (('OR','Other Rank'),('NC','Non Commisioned Officer'),('OF','Officer'))
-    Name = models.CharField(max_length=50, unique=True)
-    Abbreviation = models.CharField(max_length=50, blank=True)
-    Class = models.CharField(max_length=2, blank=True, choices=RankTypes,default='Other Rank')
+    # 6
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=50, unique=True)
+    rankTypes = (('OR','Other Rank'),('NC','Non Commisioned Officer'),('OF','Officer'))
+    abbreviation = models.CharField(max_length=50, blank=True)
+    rankClass = models.CharField(max_length=2, blank=True, choices=rankTypes,default='Other Rank')
 
     def __str__(self):
         return self.Name
+
+
+#class PowCamp(models.Model):
+#    id = models.IntegerField(primary_key=True)
+#    name = models.CharField(max_length=255, unique=True, default='')
+#    nearestCity = models.CharField(max_length=255, unique=False, default='')
+#    notes = models.CharField(max_length=255, unique=False, default='')
+#    wartimeCountry = models.ForeignKey('Country', on_delete=models.CASCADE)
+#    presentCountry = models.ForeignKey('Country', on_delete=models.CASCADE)
+#    latitude = models.FloatField() # latitude
+#    longitude = models.FloatField() # longitude
+#
+#    def __str__(self):
+#        return self.name
+
+
+class Theatre(models.Model):
+    # 11
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=255, unique=True, default='')
+    def __str__(self):
+        return self.name
+
+#class Soldier(models.Model):
+#    # 10
+#    id = models.IntegerField(primary_key=True)
+#    surname = models.CharField(max_length=255, unique=False, default='')
+#    initials = models.CharField(max_length=255, unique=False, default='')
+#    army_number = models.CharField(max_length=255, unique=False, default='')
+#    rank_id = models.ForeignKey('Rank', on_delete=models.CASCADE)
+#    notes = models.CharField(max_length=255, unique=False, default='')
+#
+#    def __str__(self):
+#        return self.surname
+
+#class SoldierImprisonment(models.Model):
+#    # 9
+#    id = models.IntegerField(primary_key=True)
+#    soldier_id = models.ForeignKey('Soldier', on_delete=models.CASCADE)
+#    company_id = models.ForeignKey('Company', on_delete=models.CASCADE)
+#    powNumber = models.CharField(max_length=255, unique=False, default='')
+#    powCamp_id = models.ForeignKey('PowCamp', on_delete=models.CASCADE)
+#    dateFrom = models.DateField() # dateFrom
+#    dateTo = models.DateField() # dateTo
+#    notes = models.CharField(max_length=255, unique=False, default='')
+
+
+#class SoldierDecoration(models.Model):
+#    # 8
+#    id = models.IntegerField(primary_key=True)
+#    name =  models.CharField(max_length=255, unique=True, default='')
+#    notes = models.CharField(max_length=255, unique=False, default='')
+#    country_id = models.ForeignKey('Country', on_delete=models.CASCADE)
+#    details_link = models.CharField(max_length=255, unique=False, default='')
+#    abbreviation = models.CharField(max_length=255, unique=False, default='')
+
+class Company(models.Model):
+    # 2
+    name = models.CharField(max_length=255, unique=True, default='')
+    notes = models.CharField(max_length=255, unique=False, default='')
+
+    def __str__(self):
+        return self.name
         
 
+class Cemetery(models.Model):
+    # 1
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=255, unique=True, default='')
+    country = models.ForeignKey('Country', on_delete=models.CASCADE)
+    latitude = models.FloatField() # latitude
+    longitude = models.FloatField() # longitude 
+
+    def __str__(self):
+        return self.name
+
+
+#class Decoration(models.Model):
+#     # 4
+#     id = models.IntegerField(primary_key=True)
+#     name = models.CharField(max_length=255, unique=True, default='')
+#     notes = models.CharField(max_length=255, unique=False, default='')
+#     country_id = models.ForeignKey('Country', on_delete=models.CASCADE)
+#     details_link = models.CharField(max_length=255, unique=False, default='')
+#     abbreviation = models.CharField(max_length=255, unique=False, default='')
+#
+#    def __str__(self):
+#        return self.Name
+
 class Country(models.Model):
+    # 3
     name_common = models.CharField(max_length=255, unique=False, default='')
     name_official = models.CharField(max_length=255, unique=False, default='')
     tld = models.CharField(max_length=10, unique=False, default='')
@@ -45,55 +135,11 @@ class Country(models.Model):
     region = models.CharField(max_length=255, default='')
     subregion = models.CharField(max_length=255, default='')
     languages = models.CharField(max_length=255, default='')
-    translations_ces_official = models.CharField(max_length=255, default='')
-    translations_ces_common = models.CharField(max_length=255, default='')
-    translations_deu_official = models.CharField(max_length=255, default='')
-    translations_deu_common = models.CharField(max_length=255, default='')
-    translations_est_official = models.CharField(max_length=255, default='')
-    translations_est_common = models.CharField(max_length=255, default='')
-    translations_fin_official = models.CharField(max_length=255, default='')
-    translations_fin_common = models.CharField(max_length=255, default='')
-    translations_fra_official = models.CharField(max_length=255, default='')
-    translations_fra_common = models.CharField(max_length=255, default='')
-    translations_hrv_official = models.CharField(max_length=255, default='')
-    translations_hrv_common = models.CharField(max_length=255, default='')
-    translations_hun_official = models.CharField(max_length=255, default='')
-    translations_hun_common = models.CharField(max_length=255, default='')
-    translations_ita_official = models.CharField(max_length=255, default='')
-    translations_ita_common = models.CharField(max_length=255, default='')
-    translations_jpn_official = models.CharField(max_length=255, default='')
-    translations_jpn_common = models.CharField(max_length=255, default='')
-    translations_kor_official = models.CharField(max_length=255, default='')
-    translations_kor_common = models.CharField(max_length=255, default='')
-    translations_nld_official = models.CharField(max_length=255, default='')
-    translations_nld_common = models.CharField(max_length=255, default='')
-    translations_per_official = models.CharField(max_length=255, default='')
-    translations_per_common = models.CharField(max_length=255, default='')
-    translations_pol_official = models.CharField(max_length=255, default='')
-    translations_pol_common = models.CharField(max_length=255, default='')
-    translations_por_official = models.CharField(max_length=255, default='')
-    translations_por_common = models.CharField(max_length=255, default='')
-    translations_rus_official = models.CharField(max_length=255, default='')
-    translations_rus_common = models.CharField(max_length=255, default='')
-    translations_slk_official = models.CharField(max_length=255, default='')
-    translations_slk_common = models.CharField(max_length=255, default='')
-    translations_spa_official = models.CharField(max_length=255, default='')
-    translations_spa_common = models.CharField(max_length=255, default='')
-    translations_swe_official = models.CharField(max_length=255, default='')
-    translations_swe_common = models.CharField(max_length=255, default='')
-    translations_urd_official = models.CharField(max_length=255, default='')
-    translations_urd_common = models.CharField(max_length=255, default='')
-    translations_zho_official = models.CharField(max_length=255, default='')
-    translations_zho_common = models.CharField(max_length=255, default='')
     latlng = models.CharField(max_length=255, default='')
     landlocked = models.BooleanField(default=False)
     borders = models.CharField(max_length=255, default='')
     area = models.FloatField(default=0.0)
     flag = models.CharField(max_length=255, default='')
-    demonyms_eng_f = models.CharField(max_length=255, default='')
-    demonyms_eng_m = models.CharField(max_length=255, default='')
-    demonyms_fra_f = models.CharField(max_length=255, default='')
-    demonyms_fra_m = models.CharField(max_length=255, default='')
     callingCodes = models.CharField(max_length=255, default='')
 
     def __str__(self):

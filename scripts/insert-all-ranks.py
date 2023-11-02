@@ -5,7 +5,7 @@ def run():
     import csv
     from cmp.models import Rank
     
-    ref_data_url = "https://raw.githubusercontent.com/gm3dmo/old-cmp/main/data/ranks.csv"
+    ref_data_url = "https://raw.githubusercontent.com/gm3dmo/old-cmp/main/data/rank.csv"
     http = urllib3.PoolManager()
     r = http.request('GET', ref_data_url)
     print(r.status)
@@ -18,16 +18,16 @@ def run():
         try:
             Rank.objects.create(
                 id=row['id'],
-                Name=row['name'],
-                Abbreviation=row['abbr'],
-                Class=row['class']
+                name=row['name'],
+                abbreviation=row['abbr'],
+                rankClass=row['class']
         )
         except Exception as e:
             print("Error with: " + row['name'])
             raise e
 
     for rank in Rank.objects.all():
-       print(f"""{rank.id} {rank.Name}""")
+       print(f"""{rank.id} {rank.name}""")
     
 
 

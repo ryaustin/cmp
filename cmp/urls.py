@@ -10,5 +10,7 @@ urlpatterns = [
     path("tools/army-number-search", views.army_number_search, name="army-number-search" ),
     path("tools/army-number-search/<int:army_number>"  , views.original_unit, name="army-number-search" ),
     path('countries/', views.countries, name='countries'),
+    path('ranks/', views.ranks, name='ranks'),
     path("mgmt/countries", views.edit_countries, name="countries"),
+    path("mgmt/ranks", views.edit_ranks, name="ranks"),
 ]

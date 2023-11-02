@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static crispy_forms_tags %}
+{% block title %}Ranks{% endblock %}
+{% block content %}
+
+<h1>Ranks</h1>
+
+<table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Abbreviation</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for rank in ranks %}
+        <tr>
+          <td>{{ rank.name }}</td>
+          <td>{{ rank.abbreviation }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+{% endblock %}

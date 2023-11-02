@@ -1,13 +1,20 @@
 from django.shortcuts import render, HttpResponse
 
 from .models import Country
-
 from cmp.forms import editCountryForm
+
+from .models import Rank
+from cmp.forms import editRankForm
 
 
 def countries(request):
     countries = Country.objects.all()
     return render(request, 'cmp/countries.html', {'countries': countries})
+
+
+def ranks(request):
+    ranks = Rank.objects.all()
+    return render(request, 'cmp/ranks.html', {'ranks': ranks})
 
 
 def index(request):
@@ -226,3 +233,12 @@ def edit_countries(request):
         form.save()
         return HttpResponse("Country Added")
     return render(request, "cmp/edit-countries.html", {"form": form})
+
+
+def edit_ranks(request):
+    post = request.POST
+    form = editRankForm(post or None)
+    if post and form.is_valid():
+        form.save()
+        return HttpResponse("Rank Added")
+    return render(request, "cmp/edit-ranks.html", {"form": form})
