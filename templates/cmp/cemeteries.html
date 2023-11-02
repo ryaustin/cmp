@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static crispy_forms_tags %}
+{% block title %}Cemeteries {% endblock %}
+{% block content %}
+
+<h1>Countries</h1>
+
+<table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Country</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cemetery in cemeteries %}
+        <tr>
+          <td>{{ cemetery.name }}</td>
+          <td><h2>{{ cemetery.name }}</h2></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+{% endblock %}

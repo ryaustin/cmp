@@ -1,13 +1,28 @@
 from django.shortcuts import render, HttpResponse
 
 from .models import Country
-
 from cmp.forms import editCountryForm
+
+from .models import Rank
+from cmp.forms import editRankForm
+
+from .models import Cemetery 
+from cmp.forms import editCemeteryForm
+
+
+def cemeteries(request):
+    cemeteries = Cemetery.objects.all()
+    return render(request, 'cmp/cemeteries.html', {'cemeteries': cemeteries})
 
 
 def countries(request):
     countries = Country.objects.all()
     return render(request, 'cmp/countries.html', {'countries': countries})
+
+
+def ranks(request):
+    ranks = Rank.objects.all()
+    return render(request, 'cmp/ranks.html', {'ranks': ranks})
 
 
 def index(request):
@@ -219,6 +234,15 @@ def original_unit(request, army_number):
     return HttpResponse("No Match Found")
 
 
+def edit_cemeteries(request):
+    post = request.POST
+    form = editCemeteryForm(post or None)
+    if post and form.is_valid():
+        form.save()
+        return HttpResponse("Cemetery Added")
+    return render(request, "cmp/edit-cemeteries.html", {"form": form})
+
+
 def edit_countries(request):
     post = request.POST
     form = editCountryForm(post or None)
@@ -226,3 +250,12 @@ def edit_countries(request):
         form.save()
         return HttpResponse("Country Added")
     return render(request, "cmp/edit-countries.html", {"form": form})
+
+
+def edit_ranks(request):
+    post = request.POST
+    form = editRankForm(post or None)
+    if post and form.is_valid():
+        form.save()
+        return HttpResponse("Rank Added")
+    return render(request, "cmp/edit-ranks.html", {"form": form})
