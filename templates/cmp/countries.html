@@ -5,7 +5,7 @@
 
 <h1>Countries</h1>
 
-<table>
+<table class="table table-hover table-borderless table-lg">
     <thead>
       <tr>
         <th>Common Name</th>
@@ -15,7 +15,11 @@
     <tbody>
       {% for country in countries %}
         <tr>
-          <td>{{ country.name }}</td>
+          <td>
+            <a href="{% url 'countries' country_id=country.id %}">
+              {{ country.name }}
+            </a>
+          </td>
           <td><h2>{{ country.flag }}</h2></td>
         </tr>
       {% endfor %}

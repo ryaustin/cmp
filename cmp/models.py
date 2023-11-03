@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from .managers import CustomUserManager
@@ -95,7 +96,7 @@ class Cemetery(models.Model):
     # 1
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, unique=True, default='')
-    country = models.ForeignKey('Country', to_field='CountryNumber', on_delete=models.CASCADE)
+    country = models.ForeignKey('Country', to_field='CountryNumber', on_delete=models.CASCADE, related_name='cemeteries')
     latitude = models.CharField(max_length=255, unique=False, default='') # latitude
     longitude = models.CharField(max_length=255, unique=False, default='') # longitude
 
@@ -125,3 +126,6 @@ class Country(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('countries', args=[str(self.id)])
