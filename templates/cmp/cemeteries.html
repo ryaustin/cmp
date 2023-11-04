@@ -8,16 +8,16 @@
 <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Country</th>
+        
+        <th><h3>Name</h3></th>
+        <th><h3>Country</h3></th>
       </tr>
     </thead>
     <tbody>
-      {% for cemetery in cemeteries %}
+      {% for cemetery in cemeteries|dictsort:"name" %}
         <tr>
           <td>{{ cemetery.name }}</td>
           <td>
-            <h2>
               <a href="{% url 'countries' country_id=cemetery.country.id %}">
                 {{ cemetery.country }}
               </a>

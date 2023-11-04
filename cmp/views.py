@@ -254,6 +254,7 @@ def edit_countries(request, country_id):
         return HttpResponse("Country Added")
     return render(request, "cmp/edit-countries.html", {"form": form})
 
+
 def detail_countries(request, country_id):
     # get or return a 404
     country = get_object_or_404(Country, pk=country_id)
