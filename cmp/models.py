@@ -34,10 +34,10 @@ class PowCamp(models.Model):
     name = models.CharField(max_length=255, unique=True, default='')
     nearestCity = models.CharField(max_length=255, unique=False, default='')
     notes = models.CharField(max_length=255, unique=False, default='')
-    wartimeCountry = models.ForeignKey('Country', on_delete=models.CASCADE)
-    presentCountry = models.CharField(max_length=255, unique=False, default='')
-    latitude = models.FloatField() # latitude
-    longitude = models.FloatField() # longitude
+    presentCountry = models.ForeignKey('Country', to_field='CountryNumber', on_delete=models.CASCADE, related_name='powcamps')
+    wartimeCountry = models.CharField(max_length=255, unique=False, default='')
+    latitude = models.CharField(max_length=255, unique=False, default='')
+    longitude = models.CharField(max_length=255, unique=False, default='')
 
     def __str__(self):
         return self.name
@@ -122,7 +122,7 @@ class Country(models.Model):
     Alpha2 = models.CharField(max_length=2, unique=True, default='')
     Alpha3 = models.CharField(max_length=3, unique=True, default='')
     CountryNumber = models.CharField(max_length=3, unique=True, default='')
-    Flag = models.CharField(max_length=255, default='')
+    Flag = models.CharField(max_length=255,  default='')
 
     def __str__(self):
         return self.name

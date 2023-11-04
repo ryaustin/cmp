@@ -3,13 +3,13 @@
 {% block title %}Countries{% endblock %}
 {% block content %}
 
-<h1>{{ country.name }} Detail</h1>
+<h1>{{ country.name }} Details</h1>
 
 <table class="table table-borderless table-lg">
     <thead>
       <tr>
-        <th>Common Name</th>
         <th>Flag</th>
+        <th>Common Name</th>
         <th>Alpha2</th>
         <th>Alpha3</th>
         <th>Country #</th>
@@ -18,13 +18,13 @@
     </thead>
     <tbody>
       <tr>
+        <td><h2>{{ country.Flag }}</h2></td>
         <td>
             {{ country.name }}
         </td>
-        <td><h2>{{ country.flag }}</h2></td>
-        <td><h2>{{ country.alpha2 }}</h2></td>
-        <td><h2>{{ country.alpha3 }}</h2></td>
-        <td><h2>{{ country.country_number }}</h2></td>
+        <td>{{ country.Alpha2 }}</td>
+        <td>{{ country.Alpha3 }}</td>
+        <td>{{ country.CountryNumber }}</td>
         <td>
           <a class="btn btn-primary btn-sm" href="{% url 'edit-countries' country_id=country.id %}">Edit
           </a>
@@ -33,11 +33,11 @@
       <table>
         <thead>
           <tr>
-            <th>Cemeteries</th>
+            <th><h3>Cemeteries</h3></th></th>
           </tr>
         </thead>
         <tbody>
-          {% for cemetery in country.cemeteries.all %}
+          {% for cemetery in country.cemeteries.all|dictsort:"name" %}
             <tr>
               <td>
                 {% comment %}

@@ -8,19 +8,15 @@
 <table class="table table-hover table-borderless table-lg">
     <thead>
       <tr>
-        <th>Common Name</th>
         <th>Flag</th>
+        <th>Name</th>
       </tr>
     </thead>
     <tbody>
-      {% for country in countries %}
+      {% for country in countries|dictsort:"name" %}
         <tr>
-          <td>
-            <a href="{% url 'countries' country_id=country.id %}">
-              {{ country.name }}
-            </a>
-          </td>
-          <td><h2>{{ country.flag }}</h2></td>
+          <td><h2>{{ country.Flag }}</h2></td>
+          <td> <a href="{% url 'countries' country_id=country.id %}"> {{ country.name }} </a> </td>
         </tr>
       {% endfor %}
     </tbody>
