@@ -3,7 +3,7 @@
 {% block title %}Cemeteries {% endblock %}
 {% block content %}
 
-<h1>Countries</h1>
+<h1>Cemeteries</h1>
 
 <table>
     <thead>
@@ -16,7 +16,13 @@
       {% for cemetery in cemeteries %}
         <tr>
           <td>{{ cemetery.name }}</td>
-          <td><h2>{{ cemetery.name }}</h2></td>
+          <td>
+            <h2>
+              <a href="{% url 'countries' country_id=cemetery.country.id %}">
+                {{ cemetery.country }}
+              </a>
+            </h2>
+          </td>
         </tr>
       {% endfor %}
     </tbody>

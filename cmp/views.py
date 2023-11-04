@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import get_object_or_404, render, HttpResponse
 
 from .models import Country
 from cmp.forms import editCountryForm
@@ -243,13 +243,21 @@ def edit_cemeteries(request):
     return render(request, "cmp/edit-cemeteries.html", {"form": form})
 
 
-def edit_countries(request):
+def edit_countries(request, country_id):
     post = request.POST
     form = editCountryForm(post or None)
+    if country_id:
+        country = Country.objects.get(id=country_id)
+        form = editCountryForm(post or None, instance=country)
     if post and form.is_valid():
         form.save()
         return HttpResponse("Country Added")
     return render(request, "cmp/edit-countries.html", {"form": form})
+
+def detail_countries(request, country_id):
+    # get or return a 404
+    country = get_object_or_404(Country, pk=country_id)
+    return render(request, "cmp/detail-countries.html", {"country": country})
 
 
 def edit_ranks(request):

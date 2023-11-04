@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static crispy_forms_tags %}
+{% block title %}Countries{% endblock %}
+{% block content %}
+
+<h1>{{ country.name }} Detail</h1>
+
+<table class="table table-borderless table-lg">
+    <thead>
+      <tr>
+        <th>Common Name</th>
+        <th>Flag</th>
+        <th>Alpha2</th>
+        <th>Alpha3</th>
+        <th>Country #</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+            {{ country.name }}
+        </td>
+        <td><h2>{{ country.flag }}</h2></td>
+        <td><h2>{{ country.alpha2 }}</h2></td>
+        <td><h2>{{ country.alpha3 }}</h2></td>
+        <td><h2>{{ country.country_number }}</h2></td>
+        <td>
+          <a class="btn btn-primary btn-sm" href="{% url 'edit-countries' country_id=country.id %}">Edit
+          </a>
+        </td>
+      </tr>
+      <table>
+        <thead>
+          <tr>
+            <th>Cemeteries</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cemetery in country.cemeteries.all %}
+            <tr>
+              <td>
+                {% comment %}
+                <!-- #TODO: @Dave add the Cemtery detail page -->
+                <a href="{% url 'cemeteries' cemetery_id=cemetery.id %}">
+                  {{ cemetery.name }}
+                </a>
+                {% endcomment %}
+                {{ cemetery.name }}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </tbody>
+  </table>
+
+
+{% endblock %}
