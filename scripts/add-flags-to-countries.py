@@ -20,11 +20,11 @@ def run():
 
     # for every country in the database, add the flag if the country is in the dictionary
     for country in Country.objects.all():
-        if country.Alpha2 in flags:
-            country.Flag = flags[country.Alpha2]
+        if country.alpha2 in flags:
+            country.flag = flags[country.alpha2]
             country.save()
-            print(f"""{country.name} {country.Alpha2} {country.Flag}""")
+            print(f"""{country.name} {country.alpha2} {country.flag}""")
         else:
-            print(f"""{country.name} {country.Alpha2} no flag""")
+            print(f"""{country.name} {country.alpha2} no flag""")
     
 

@@ -6,6 +6,8 @@ from .models import CustomUser
 from .models import Country
 from .models import Rank
 from .models import Cemetery
+from .models import PowCamp
+
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -17,6 +19,12 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
         fields = ("email",)
+
+
+class editPowCampForm(forms.ModelForm):
+    class Meta:
+        model = PowCamp
+        fields = "__all__"
 
 
 class editCemeteryForm(forms.ModelForm):

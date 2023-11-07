@@ -1,7 +1,6 @@
 
 def run():
 
-    import sys
     import urllib3
     import csv
     from cmp.models import Cemetery
@@ -50,12 +49,3 @@ def run():
         except Exception as e:
             print("Error with: " + row['name'])
             raise e
-
-
-        
-
-
-        
-
-
-
