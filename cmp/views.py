@@ -9,6 +9,13 @@ from cmp.forms import editRankForm
 from .models import Cemetery 
 from cmp.forms import editCemeteryForm
 
+from .models import PowCamp
+from cmp.forms import editPowCampForm
+
+
+def powcamps(request):
+    powcamps = PowCamp.objects.all()
+    return render(request, 'cmp/pow-camps.html', {'powcamps': powcamps})
 
 def cemeteries(request):
     cemeteries = Cemetery.objects.all()
@@ -241,6 +248,15 @@ def edit_cemeteries(request):
         form.save()
         return HttpResponse("Cemetery Added")
     return render(request, "cmp/edit-cemeteries.html", {"form": form})
+
+
+def edit_powcamps(request):
+    post = request.POST
+    form = editPowCampForm(post or None)
+    if post and form.is_valid():
+        form.save()
+        return HttpResponse("POW Camp Added")
+    return render(request, "cmp/edit-pow-camps.html", {"form": form})
 
 
 def edit_countries(request, country_id):

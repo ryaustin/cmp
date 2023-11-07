@@ -20,7 +20,7 @@ def run():
                 id=row['id'],
                 name=row['name'],
                 abbreviation=row['abbr'],
-                rankClass=row['class']
+                rank_class=row['class']
         )
         except Exception as e:
             print("Error with: " + row['name'])
@@ -29,10 +29,3 @@ def run():
     for rank in Rank.objects.all():
        print(f"""{rank.id} {rank.name}""")
     
-
-
-
-        
-
-
-

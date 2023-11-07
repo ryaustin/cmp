@@ -9,7 +9,7 @@
     <thead>
       <tr>
         <th>Flag</th>
-        <th>Common Name</th>
+        <th>Name</th>
         <th>Alpha2</th>
         <th>Alpha3</th>
         <th>Country #</th>
@@ -18,18 +18,19 @@
     </thead>
     <tbody>
       <tr>
-        <td><h2>{{ country.Flag }}</h2></td>
+        <td><h2>{{ country.flag }}</h2></td>
         <td>
             {{ country.name }}
         </td>
-        <td>{{ country.Alpha2 }}</td>
-        <td>{{ country.Alpha3 }}</td>
-        <td>{{ country.CountryNumber }}</td>
+        <td>{{ country.alpha2 }}</td>
+        <td>{{ country.alpha3 }}</td>
+        <td>{{ country.country_number }}</td>
         <td>
           <a class="btn btn-primary btn-sm" href="{% url 'edit-countries' country_id=country.id %}">Edit
           </a>
         </td>
       </tr>
+
       <table>
         <thead>
           <tr>
@@ -54,6 +55,31 @@
       </table>
     </tbody>
   </table>
-
+<p>
+ <table>
+        <thead>
+          <tr>
+            <th><h3>Prisoner of War (POW) Camps</h3></th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for powcamp in country.powcamps.all|dictsort:"name" %}
+          po
+            <tr>
+              <td>
+                {% comment %}
+                <!-- #TODO: @Dave add the Cemtery detail page -->
+                <a href="{% url 'powcamps' powcamp_id=powcamp.id %}">
+                  {{ powcamp.name }}
+                </a>
+                {% endcomment %}
+                {{ powcamp.name }}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </tbody>
+  </table>
 
 {% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static crispy_forms_tags %}
+{% block title %}Prisoner of War Camps{% endblock %}
+{% block content %}
+
+<h1>Prisoner of War (POW) Camps</h1>
+
+<table>
+    <thead>
+      <tr>
+        
+        <th><h3>Name</h3></th>
+        <th><h3>Country</h3></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for powcamp in powcamps|dictsort:"name" %}
+        <tr>
+          <td>{{ powcamp.name }}</td>
+          <td>
+              <a href="{% url 'countries' country_id=powcamp.country.id %}">
+                {{ powcamp.country }}
+              </a>
+            </h2>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+{% endblock %}

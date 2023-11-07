@@ -19,23 +19,21 @@ class CustomUser(AbstractUser):
 
 class Rank(models.Model):
     # 6
-    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50, unique=True)
-    rankTypes = (('OR','Other Rank'),('NC','Non Commisioned Officer'),('OF','Officer'))
+    rank_types = (('OR','Other Rank'),('NC','Non Commisioned Officer'),('OF','Officer'))
     abbreviation = models.CharField(max_length=50, blank=True)
-    rankClass = models.CharField(max_length=2, blank=True, choices=rankTypes,default='Other Rank')
+    rank_class = models.CharField(max_length=2, blank=True, choices=rank_types,default='Other Rank')
 
     def __str__(self):
         return self.Name
 
 
 class PowCamp(models.Model):
-    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, unique=True, default='')
-    nearestCity = models.CharField(max_length=255, unique=False, default='')
+    nearest_city = models.CharField(max_length=255, unique=False, default='')
     notes = models.CharField(max_length=255, unique=False, default='')
-    presentCountry = models.ForeignKey('Country', to_field='CountryNumber', on_delete=models.CASCADE, related_name='powcamps')
-    wartimeCountry = models.CharField(max_length=255, unique=False, default='')
+    country = models.ForeignKey('Country', to_field='country_number', on_delete=models.CASCADE, related_name='powcamps')
+    wartime_country = models.CharField(max_length=255, unique=False, default='')
     latitude = models.CharField(max_length=255, unique=False, default='')
     longitude = models.CharField(max_length=255, unique=False, default='')
 
@@ -45,18 +43,16 @@ class PowCamp(models.Model):
 
 class Theatre(models.Model):
     # 11
-    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, unique=True, default='')
     def __str__(self):
         return self.name
 
 class Soldier(models.Model):
     # 10
-    id = models.IntegerField(primary_key=True)
     surname = models.CharField(max_length=255, unique=False, default='')
     initials = models.CharField(max_length=255, unique=False, default='')
     army_number = models.CharField(max_length=255, unique=False, default='')
-    rank_id = models.ForeignKey('Rank', on_delete=models.CASCADE)
+    rank = models.ForeignKey('Rank', on_delete=models.CASCADE)
     notes = models.CharField(max_length=255, unique=False, default='')
 
     def __str__(self):
@@ -64,11 +60,10 @@ class Soldier(models.Model):
 
 class SoldierImprisonment(models.Model):
     # 9
-    id = models.IntegerField(primary_key=True)
-    soldier_id = models.ForeignKey('Soldier', on_delete=models.CASCADE)
-    company_id = models.ForeignKey('Company', on_delete=models.CASCADE)
-    powNumber = models.CharField(max_length=255, unique=False, default='')
-    powCamp_id = models.ForeignKey('PowCamp', on_delete=models.CASCADE)
+    soldier = models.ForeignKey('Soldier', on_delete=models.CASCADE)
+    company = models.ForeignKey('Company', on_delete=models.CASCADE)
+    pow_number = models.CharField(max_length=255, unique=False, default='')
+    pow_camp = models.ForeignKey('PowCamp', on_delete=models.CASCADE)
     dateFrom = models.DateField() # dateFrom
     dateTo = models.DateField() # dateTo
     notes = models.CharField(max_length=255, unique=False, default='')
@@ -76,7 +71,6 @@ class SoldierImprisonment(models.Model):
 
 class SoldierDecoration(models.Model):
     # 8
-    id = models.IntegerField(primary_key=True)
     name =  models.CharField(max_length=255, unique=True, default='')
     notes = models.CharField(max_length=255, unique=False, default='')
     country_id = models.ForeignKey('Country', on_delete=models.CASCADE)
@@ -94,9 +88,8 @@ class Company(models.Model):
 
 class Cemetery(models.Model):
     # 1
-    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, unique=True, default='')
-    country = models.ForeignKey('Country', to_field='CountryNumber', on_delete=models.CASCADE, related_name='cemeteries')
+    country = models.ForeignKey('Country', on_delete=models.CASCADE, related_name='cemeteries')
     latitude = models.CharField(max_length=255, unique=False, default='') # latitude
     longitude = models.CharField(max_length=255, unique=False, default='') # longitude
 
@@ -106,10 +99,9 @@ class Cemetery(models.Model):
 
 class Decoration(models.Model):
     # 4
-    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, unique=True, default='')
-    notes = models.CharField(max_length=255, unique=False, default='')
-    country_id = models.ForeignKey('Country', on_delete=models.CASCADE)
+    notes  = models.CharField(max_length=255, unique=False, default='')
+    country = models.ForeignKey('Country', on_delete=models.CASCADE)
     details_link = models.CharField(max_length=255, unique=False, default='')
     abbreviation = models.CharField(max_length=255, unique=False, default='')
 
@@ -119,10 +111,10 @@ class Decoration(models.Model):
 class Country(models.Model):
     # 3
     name = models.CharField(max_length=255, unique=True, default='')
-    Alpha2 = models.CharField(max_length=2, unique=True, default='')
-    Alpha3 = models.CharField(max_length=3, unique=True, default='')
-    CountryNumber = models.CharField(max_length=3, unique=True, default='')
-    Flag = models.CharField(max_length=255,  default='')
+    alpha2 = models.CharField(max_length=2, unique=True, default='')
+    alpha3 = models.CharField(max_length=3, unique=True, default='')
+    country_number = models.CharField(max_length=3, unique=True)
+    flag = models.CharField(max_length=255,  default='')
 
     def __str__(self):
         return self.name

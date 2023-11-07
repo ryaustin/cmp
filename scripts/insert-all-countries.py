@@ -22,10 +22,10 @@ def run():
             Country.objects.create(
                 id = row['id'],
                 name = row['Name'],
-                Alpha2 = row['Alpha2'],
-                Alpha3 = row['Alpha3'],
-                CountryNumber = row['CountryNumber'],
-                Flag = ""
+                alpha2 = row['Alpha2'],
+                alpha3 = row['Alpha3'],
+                country_number = row['CountryNumber'],
+                flag = ""
         )
         except Exception as e:
             print("Error with: " + row['Name'])

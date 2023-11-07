@@ -16,24 +16,18 @@ def run():
     # add a country model for each row in the csv file
     for row in reader:
         print(f""" {row['id']} {row['Name']} ({row['PresentCountry_id']}) {row['WartimeCountry']} {row['Latitude']} {row['Longitude']}""")
+        if int(row["id"]) == 59:
+            break
         try:
             PowCamp.objects.create(
                 id=row['id'],
                 name=row['Name'],
-                presentCountry="276",
-                wartimeCountry=row['WartimeCountry'],
+                country_id=row['PresentCountry_id'],
+                wartime_country=row['WartimeCountry'],
                 latitude=row['Latitude'],
                 longitude=row['Longitude']
         )
         except Exception as e:
             print("Error with: " + row['Name'])
             raise e
-
-
-        
-
-
-        
-
-
 

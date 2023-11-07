@@ -15,7 +15,7 @@
     <tbody>
       {% for country in countries|dictsort:"name" %}
         <tr>
-          <td><h2>{{ country.Flag }}</h2></td>
+          <td><h2>{{ country.flag }}</h2></td>
           <td> <a href="{% url 'countries' country_id=country.id %}"> {{ country.name }} </a> </td>
         </tr>
       {% endfor %}
