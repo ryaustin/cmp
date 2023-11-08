@@ -1,7 +1,13 @@
+import pytest
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
 from cmp.views import original_unit, belongsTo
+
+from cmp.models import Rank
+
+from cmp import views
 
 class TestOriginalUnit(TestCase):
 
@@ -78,8 +84,10 @@ class TestOriginalUnit(TestCase):
 class UsersManagersTests(TestCase):
     def test_create_user(self):
         User = get_user_model()
-        user = User.objects.create_user(email="normal@user.com", password="foo")
-        self.assertEqual(user.email, "normal@user.com")
+        expected_email = "normal@user.com"
+        user = User.objects.create_user(email=expected_email, password="foo")
+        self.assertEqual(user.email, expected_email)
+        self.assertEqual(user.__str__(), expected_email)
         self.assertTrue(user.is_active)
         self.assertFalse(user.is_staff)
         self.assertFalse(user.is_superuser)
@@ -115,3 +123,49 @@ class UsersManagersTests(TestCase):
             User.objects.create_superuser(
                 email="super@user.com", password="foo", is_superuser=False
             )
+        with self.assertRaises(ValueError):
+            User.objects.create_superuser(
+                email="super@user.com", password="foo",  is_staff=False
+            )
+
+    
+
+
+@pytest.mark.django_db
+class RankModelTest(TestCase):
+    def test_create_rank(self):
+        name = "Private"
+        abbreviation = "Pte"
+        rank_class = "Other Rank"
+        rank = Rank.objects.create(name=name, abbreviation=abbreviation, rank_class=rank_class)
+        self.assertEqual(rank.name, name)
+        self.assertEqual(rank.abbreviation, abbreviation)
+        self.assertEqual(rank.rank_class, rank_class)
+        self.assertEqual(str(rank), name)
+
+@pytest.mark.django_db
+class testViewsModule(TestCase):
+    def test_powcamps_view(self):
+        response = self.client.get("/pow-camps/")
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "cmp/pow-camps.html")
+
+    def test_cemeteries_view(self):
+        response = self.client.get("/cemeteries/")
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "cmp/cemeteries.html")
+
+    def test_ranks_view(self):
+        response = self.client.get("/ranks/")
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "cmp/ranks.html")
+
+    def test_countries_view(self):
+        response = self.client.get("/countries/")
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "cmp/countries.html")
+    
+    def test_index_view(self):
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "cmp/index.html")
