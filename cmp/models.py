@@ -25,7 +25,7 @@ class Rank(models.Model):
     rank_class = models.CharField(max_length=2, blank=True, choices=rank_types,default='Other Rank')
 
     def __str__(self):
-        return self.Name
+        return self.name
 
 
 class PowCamp(models.Model):
