@@ -45,6 +45,8 @@ jobs:
       - name: Run test with coverage report
         run: |
             pytest
+      - name: Coveralls Coverage Report
+        uses: coverallsapp/github-action@v2.2.3    
       - name: CMP Pytest Coverage Report
         uses: orgoro/coverage@v3.1
         with:
