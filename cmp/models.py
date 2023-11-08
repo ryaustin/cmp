@@ -52,7 +52,7 @@ class Soldier(models.Model):
     surname = models.CharField(max_length=255, unique=False, default='')
     initials = models.CharField(max_length=255, unique=False, default='')
     army_number = models.CharField(max_length=255, unique=False, default='')
-    rank = models.ForeignKey('Rank', on_delete=models.CASCADE)
+    rank = models.ForeignKey('Rank', on_delete=models.CASCADE, related_name='ranks')
     notes = models.CharField(max_length=255, unique=False, default='')
 
     def __str__(self):
