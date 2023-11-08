@@ -61,11 +61,13 @@ class Soldier(models.Model):
 class SoldierImprisonment(models.Model):
     # 9
     soldier = models.ForeignKey('Soldier', on_delete=models.CASCADE)
-    company = models.ForeignKey('Company', on_delete=models.CASCADE)
+    legacy_company = models.CharField(max_length=255, unique=False, default='')
     pow_number = models.CharField(max_length=255, unique=False, default='')
     pow_camp = models.ForeignKey('PowCamp', on_delete=models.CASCADE)
-    dateFrom = models.DateField() # dateFrom
-    dateTo = models.DateField() # dateTo
+    date_from = models.DateField(null=True, blank=True ) 
+    date_to = models.DateField(null=True, blank=True)
+    legacy_date_from = models.CharField(max_length=255, unique=False, default='')
+    legacy_date_to = models.CharField(max_length=255, unique=False, default='')
     notes = models.CharField(max_length=255, unique=False, default='')
 
 
