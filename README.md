@@ -12,3 +12,6 @@ For configuration [django-environ](https://github.com/joke2k/django-environ) is 
 The countries are extracted from this article:
 
 https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
+
+### Test Coverage
+[![Coverage Status](https://coveralls.io/repos/github/gm3dmo/cmp/badge.svg?branch=main)](https://coveralls.io/github/gm3dmo/cmp?branch=main)
