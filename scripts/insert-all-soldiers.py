@@ -11,7 +11,7 @@ def run():
     r = http.request('GET', ref_data_url)
     print(r.status)
     # load the response into a csv dictionary reader
-    reader = csv.DictReader(r.data.decode('utf-8').splitlines())
+    reader = csv.DictReader(r.data.decode('ISO-8859-1').splitlines())
     # breakpoint()
     print(reader) 
     # print(reader.fieldnames)
