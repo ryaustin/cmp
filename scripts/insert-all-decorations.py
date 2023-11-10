@@ -1,9 +1,15 @@
 
 def run():
 
+    import sys
     import urllib3
     import csv
     from cmp.models import Decoration
+
+    print()
+    title = sys.argv[2]
+    print(f"""\033[4;33m{title}\033[0m""")
+    print("-" * len(title))
     
     ref_data_url = "https://raw.githubusercontent.com/gm3dmo/old-cmp/main/data/decoration.csv"
     http = urllib3.PoolManager()
