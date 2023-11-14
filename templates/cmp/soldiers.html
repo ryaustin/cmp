@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static crispy_forms_tags %}
+{% block title %}Soldiers{% endblock %}
+{% block content %}
+
+<h1>Soldiers</h1>
+
+<table class="table table-hover table-borderless table-lg">
+    <thead>
+      <tr>
+        <th><h2>Surname</h2></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for soldier in soldiers|dictsort:"surname" %}
+        <tr>
+          <td>{{ soldier.surname }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+{% endblock %}

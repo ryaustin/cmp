@@ -7,6 +7,7 @@ from .models import Country
 from .models import Rank
 from .models import Cemetery
 from .models import PowCamp
+from .models import Soldier
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -42,5 +43,11 @@ class editCountryForm(forms.ModelForm):
 class editRankForm(forms.ModelForm):
     class Meta:
         model = Rank
+        fields = "__all__"
+
+
+class editSoldierForm(forms.ModelForm):
+    class Meta:
+        model = Soldier
         fields = "__all__"
 
