@@ -5,6 +5,11 @@ def run():
     import urllib3
     import csv
     from cmp.models import Country
+
+    print()
+    title = sys.argv[2]
+    print(f"""\033[4;33m{title}\033[0m""")
+    print("-" * len(title))
     
     #ref_data_url = "https://raw.githubusercontent.com/mledoze/countries/master/dist/countries.csv"
     ref_data_url = "https://raw.githubusercontent.com/gm3dmo/old-cmp/main/data/country.csv"

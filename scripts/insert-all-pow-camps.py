@@ -5,6 +5,12 @@ def run():
     import urllib3
     import csv
     from cmp.models import PowCamp
+
+
+    print()
+    title = sys.argv[2]
+    print(f"""\033[4;33m{title}\033[0m""")
+    print("-" * len(title))
     
     ref_data_url = "https://raw.githubusercontent.com/gm3dmo/old-cmp/main/data/pow-camp.csv"
     http = urllib3.PoolManager()
@@ -16,8 +22,6 @@ def run():
     # add a country model for each row in the csv file
     for row in reader:
         print(f""" {row['id']} {row['Name']} ({row['PresentCountry_id']}) {row['WartimeCountry']} {row['Latitude']} {row['Longitude']}""")
-        if int(row["id"]) == 59:
-            break
         try:
             PowCamp.objects.create(
                 id=row['id'],

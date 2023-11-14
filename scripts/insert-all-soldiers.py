@@ -5,6 +5,11 @@ def run():
     import urllib3
     import csv
     from cmp.models import Soldier
+
+    print()
+    title = sys.argv[2]
+    print(f"""\033[4;33m{title}\033[0m""")
+    print("-" * len(title))
     
     ref_data_url = "https://raw.githubusercontent.com/gm3dmo/old-cmp/main/data/soldier.csv"
     http = urllib3.PoolManager()
