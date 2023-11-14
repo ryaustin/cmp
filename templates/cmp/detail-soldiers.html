@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static crispy_forms_tags %}
+{% block title %}Soldiers{% endblock %}
+{% block content %}
+
+<h1>Soldier Details</h1>
+
+<table class="table table-borderless table-lg">
+    <thead>
+      <tr>
+        <th>Surname</th>
+        <th>Initials</th>
+        <th>Rank</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ soldier.surname }}</td>
+        <td>{{ soldier.initials}}</td>
+        <td>{{ soldier.rank}}</td>
+        <td>
+          <a class="btn btn-primary btn-sm" href="{% url 'edit-soldiers' soldier_id=soldier.id %}">Edit
+          </a>
+        </td>
+      </tr>
+  </table>
+
+{% endblock %}

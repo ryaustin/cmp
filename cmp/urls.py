@@ -25,4 +25,10 @@ urlpatterns = [
     path('pow-camps/', views.powcamps, name='powcamps'),
     path("mgmt/pow-camps", views.edit_powcamps, name="powcamps"),
 
+    # Soldiers
+    path('soldiers/', views.soldiers, name='soldiers'),
+    path("mgmt/soldiers", views.edit_soldiers, name="soldiers"),
+    path("mgmt/soldiers/<int:soldier_id>/", views.detail_soldiers, name="soldiers"),
+    path("mgmt/soldiers/edit/<int:soldier_id>", views.edit_soldiers, name="edit-soldiers"),
+
 ]

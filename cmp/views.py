@@ -12,6 +12,9 @@ from cmp.forms import editCemeteryForm
 from .models import PowCamp
 from cmp.forms import editPowCampForm
 
+from .models import Soldier
+from cmp.forms import editSoldierForm
+
 
 def powcamps(request):
     powcamps = PowCamp.objects.all()
@@ -25,6 +28,11 @@ def cemeteries(request):
 def countries(request):
     countries = Country.objects.all()
     return render(request, 'cmp/countries.html', {'countries': countries})
+
+
+def soldiers(request):
+    soldiers = Soldier.objects.all()
+    return render(request, 'cmp/soldiers.html', {'soldiers': soldiers})
 
 
 def ranks(request):
@@ -271,10 +279,28 @@ def edit_countries(request, country_id):
     return render(request, "cmp/edit-countries.html", {"form": form})
 
 
+def edit_soldiers(request, soldier_id):
+    post = request.POST
+    form = editSoldierForm(post or None)
+    if soldier_id:
+        soldier = Soldier.objects.get(id=soldier_id)
+        form = editSoldierForm(post or None, instance=soldier)
+    if post and form.is_valid():
+        form.save()
+        return HttpResponse("Soldier Added")
+    return render(request, "cmp/edit-soldiers.html", {"form": form})
+
+
 def detail_countries(request, country_id):
     # get or return a 404
     country = get_object_or_404(Country, pk=country_id)
     return render(request, "cmp/detail-countries.html", {"country": country})
+
+
+def detail_soldiers(request, soldier_id):
+    # get or return a 404
+    soldier = get_object_or_404(Soldier, pk=soldier_id)
+    return render(request, "cmp/detail-soldiers.html", {"soldier": soldier})
 
 
 def edit_ranks(request):
