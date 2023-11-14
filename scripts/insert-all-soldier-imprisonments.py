@@ -22,7 +22,7 @@ def run():
     # print(reader.fieldnames)
     # id,soldier_id,company_id,powNumber,powCamp_id,dateFrom,dateTo,notes
     for row in reader:
-        print(f"""SoldierImprisonment: {row['id']}""")
+        print(f"""SoldierImprisonment: {row['id']} {row['soldier_id']} """)
         try:
             SoldierImprisonment.objects.create(
                 id = row['id'],
