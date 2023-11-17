@@ -17,8 +17,51 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.email
 
+class Country(models.Model):
+    # 3
+    name = models.CharField(max_length=255, unique=True, default='')
+    alpha2 = models.CharField(max_length=2, unique=True, default='')
+    alpha3 = models.CharField(max_length=3, unique=True, default='')
+    country_number = models.CharField(max_length=3, unique=True)
+    flag = models.CharField(max_length=255,  default='')
+
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('countries', args=[str(self.id)])
+
+class Cemetery(models.Model):
+    # 1
+    name = models.CharField(max_length=255, unique=True, default='')
+    country = models.ForeignKey('Country', on_delete=models.CASCADE, related_name='cemeteries')
+    latitude = models.CharField(max_length=255, unique=False, default='') # latitude
+    longitude = models.CharField(max_length=255, unique=False, default='') # longitude
+
+    def __str__(self):
+        return self.name
+
+
+class Decoration(models.Model):
+    # 4
+    name = models.CharField(max_length=255, unique=True, default='')
+    notes  = models.CharField(max_length=255, unique=False, default='')
+    country = models.ForeignKey('Country', on_delete=models.CASCADE)
+    details_link = models.CharField(max_length=255, unique=False, default='')
+    abbreviation = models.CharField(max_length=255, unique=False, default='')
+
+    def __str__(self):
+        return self.Name
+
+class Company(models.Model):
+    # 2
+    name = models.CharField(max_length=255, unique=True, default='')
+    notes = models.CharField(max_length=255, unique=False, default='')
+
+    def __str__(self):
+        return self.name
+
 class Rank(models.Model):
-    # 6
     name = models.CharField(max_length=50, unique=True)
     rank_types = (('OR','Other Rank'),('NC','Non Commisioned Officer'),('OF','Officer'))
     abbreviation = models.CharField(max_length=50, blank=True)
@@ -58,6 +101,18 @@ class Soldier(models.Model):
     def __str__(self):
         return self.surname
 
+
+class SoldierDeath(models.Model):
+    soldier = models.OneToOneField(Soldier, on_delete=models.CASCADE, primary_key=True)
+    date = models.DateField(null=True, blank=True)
+    company = models.ForeignKey(Company, blank=True, null=True, default="UNKNOWN", on_delete=models.CASCADE) 
+    cemetery = models.ForeignKey(Cemetery, blank=True, null=True, default=110, on_delete=models.CASCADE)
+    cwgc_id  = models.IntegerField(blank=True, null=True, unique=False, verbose_name="War Graves ID")
+
+    def __str__(self):
+        return f"{self.soldier} {self.date} {self.cemetery}"
+ 
+
 class SoldierImprisonment(models.Model):
     # 9
     soldier = models.ForeignKey('Soldier', on_delete=models.CASCADE)
@@ -78,48 +133,3 @@ class SoldierDecoration(models.Model):
     country_id = models.ForeignKey('Country', on_delete=models.CASCADE)
     details_link = models.CharField(max_length=255, unique=False, default='')
     abbreviation = models.CharField(max_length=255, unique=False, default='')
-
-class Company(models.Model):
-    # 2
-    name = models.CharField(max_length=255, unique=True, default='')
-    notes = models.CharField(max_length=255, unique=False, default='')
-
-    def __str__(self):
-        return self.name
-        
-
-class Cemetery(models.Model):
-    # 1
-    name = models.CharField(max_length=255, unique=True, default='')
-    country = models.ForeignKey('Country', on_delete=models.CASCADE, related_name='cemeteries')
-    latitude = models.CharField(max_length=255, unique=False, default='') # latitude
-    longitude = models.CharField(max_length=255, unique=False, default='') # longitude
-
-    def __str__(self):
-        return self.name
-
-
-class Decoration(models.Model):
-    # 4
-    name = models.CharField(max_length=255, unique=True, default='')
-    notes  = models.CharField(max_length=255, unique=False, default='')
-    country = models.ForeignKey('Country', on_delete=models.CASCADE)
-    details_link = models.CharField(max_length=255, unique=False, default='')
-    abbreviation = models.CharField(max_length=255, unique=False, default='')
-
-    def __str__(self):
-        return self.Name
-
-class Country(models.Model):
-    # 3
-    name = models.CharField(max_length=255, unique=True, default='')
-    alpha2 = models.CharField(max_length=2, unique=True, default='')
-    alpha3 = models.CharField(max_length=3, unique=True, default='')
-    country_number = models.CharField(max_length=3, unique=True)
-    flag = models.CharField(max_length=255,  default='')
-
-    def __str__(self):
-        return self.name
-    
-    def get_absolute_url(self):
-        return reverse('countries', args=[str(self.id)])
