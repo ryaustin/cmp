@@ -12,9 +12,11 @@
       </tr>
     </thead>
     <tbody>
-      {% for soldier in soldiers|dictsort:"surname" %}
+      {% for soldier in soldiers %}
         <tr>
-          <td>{{ soldier.surname }}</td>
+          <td>
+            <a href="{% url 'soldiers' soldier_id=soldier.id %}">{{ soldier.surname }}</a>
+          </td>
         </tr>
       {% endfor %}
     </tbody>

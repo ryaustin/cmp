@@ -57,6 +57,9 @@ class Soldier(models.Model):
 
     def __str__(self):
         return self.surname
+    
+    class Meta:
+        ordering = ['surname']
 
 class SoldierImprisonment(models.Model):
     # 9
