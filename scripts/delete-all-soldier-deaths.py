@@ -1,5 +1,5 @@
 from cmp.models import SoldierDeath
 
 def run():
-    soldierDeaths = SoldierDeath.objects.all()
-    soldierDeaths.delete()
+    SoldierDeaths = SoldierDeath.objects.all()
+    SoldierDeaths.delete()

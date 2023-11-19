@@ -14,18 +14,18 @@ def run():
     ref_data_url = "https://raw.githubusercontent.com/gm3dmo/old-cmp/main/data/company.csv"
     http = urllib3.PoolManager()
     r = http.request('GET', ref_data_url)
-    print(r.status)
+    print(f"""Fetch table response code: {r.status}""")
     # load the response into a csv dictionary reader
     reader = csv.DictReader(r.data.decode('utf-8').splitlines())
     
     print(reader.fieldnames)
     for row in reader:
-        print(row['name'])
+        #print(row['name'])
         try:
             Company.objects.create(
                 name = row['name']
         )
         except Exception as e:
-            print("Error with: " + row['name'])
+            print(f"""💥row: ({row}) """)
             raise e
 

@@ -15,7 +15,7 @@ def run():
     ref_data_url = "https://raw.githubusercontent.com/gm3dmo/old-cmp/main/data/country.csv"
     http = urllib3.PoolManager()
     r = http.request('GET', ref_data_url)
-    print(r.status)
+    print(f"""Fetch table response code: {r.status}""")
     # load the response into a csv dictionary reader
     reader = csv.DictReader(r.data.decode('utf-8').splitlines())
     #reader.fieldnames = [field.replace('.', '_') for field in reader.fieldnames]
