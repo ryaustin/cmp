@@ -87,7 +87,7 @@ class Decoration(models.Model):
     abbreviation = models.CharField(max_length=255, unique=False, default='')
 
     def __str__(self):
-        return self.Name
+        return self.name
 
 
 class Soldier(models.Model):
