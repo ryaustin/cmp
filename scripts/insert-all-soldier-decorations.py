@@ -7,6 +7,7 @@ def run():
     from cmp.models import SoldierDecoration
     from cmp.models import Company
     from cmp.models import Country
+    from cmp.models import Soldier
 
     print()
     title = sys.argv[2]
@@ -34,21 +35,28 @@ def run():
                 country = country.first()
             else:
                 country = Country.objects.filter(name="UNKNOWN").first()
-            
+            gazette_date = row.get('gazetteDate', None)
+            if gazette_date == "":
+                gazette_date = None
+                
+            if int(row.get("id")) == 384:
+                print(f"""row: {row}""")
+                breakpoint()
 
             SoldierDecoration.objects.create(
                 #id,soldier_id,company_id,decoration_id,gazetteIssue,gazettePage,gazetteDate,citation,notes,country_id
                 # create the model
-                id = row['id'],
-                soldier = int(row['soldier_id']),
-                company  = company.id,
-                decoration_id = row['decoration_id'],
+                id = int(row['id']),
+                #soldier = soldier
+                soldier_id = int(row['soldier_id']),
+                company_id  = company.id,
+                decoration_id = int(row['decoration_id']),
                 gazette_issue = row['gazetteIssue'],
                 gazette_page = row['gazettePage'],
-                gazette_date = row['gazetteDate'],
+                gazette_date = gazette_date,
                 citation = row['citation'],
                 notes = row['notes'],
-                country_id = country
+                country_id = country.id
         )
         except Exception as e:
             print(f"""💥row: {row}""")

@@ -160,13 +160,13 @@ class SoldierDecoration(models.Model):
     decoration = models.ForeignKey(Decoration, blank=True, null=True, on_delete=models.CASCADE)
     gazette_issue =  models.CharField(max_length=50,    blank=True)
     gazette_page = models.CharField(max_length=50,    blank=True)
-    gazette_date = models.DateField(null=True,    blank=True)
+    gazette_date = models.DateField(null=True, blank=True)
     theatre = models.ForeignKey(Theatre, blank=True, null=True, help_text="Theatre of Operations e.g. Normandy, B.E.F. France & Flanders. NOT Country names", on_delete=models.CASCADE) 
     country  = models.ForeignKey(Country, blank=True, null=True, on_delete=models.CASCADE)
     citation = models.TextField(max_length=50000, blank=True)
     notes = models.TextField(max_length=50000, blank=True)
     def __str__(self):
-        return self.decoration
+        return self.decoration.name
 
     def generate_gazette_url(self):
         """Build a URL for the London Gazette website. This will not handle Edinburgh gazette"""
