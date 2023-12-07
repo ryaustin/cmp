@@ -310,3 +310,16 @@ def edit_ranks(request):
         form.save()
         return HttpResponse("Rank Added")
     return render(request, "cmp/edit-ranks.html", {"form": form})
+
+
+def soldier_detail(request, soldier_id):
+    """Gather together details about soldier"""
+    s = Soldier.objects.get(id=soldier_id)
+    soldier_record = {
+                          's_surname':      s.surname,
+                          #'s_initials':     s.dot_initials(),
+                          's_rank':         s.rank,
+                          's_armynumber':   s.army_number,
+                          's_notes':        s.notes, 
+                         }
+    return soldier_record
