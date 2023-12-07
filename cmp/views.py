@@ -312,14 +312,20 @@ def edit_ranks(request):
     return render(request, "cmp/edit-ranks.html", {"form": form})
 
 
-def soldier_detail(request, soldier_id):
-    """Gather together details about soldier"""
-    s = Soldier.objects.get(id=soldier_id)
-    soldier_record = {
-                          's_surname':      s.surname,
-                          #'s_initials':     s.dot_initials(),
-                          's_rank':         s.rank,
-                          's_armynumber':   s.army_number,
-                          's_notes':        s.notes, 
-                         }
-    return soldier_record
+def soldier(request, soldier_id):
+    # get or return a 404
+    soldier = get_object_or_404(Soldier, pk=soldier_id)
+    return render(request, "cmp/soldier.html", {"soldier": soldier})
+
+
+#def soldier_detail(request, soldier_id):
+#    """Gather together details about soldier"""
+#    s = Soldier.objects.get(id=soldier_id)
+#    soldier_record = {
+#                          's_surname':      s.surname,
+#                          #'s_initials':     s.dot_initials(),
+#                          's_rank':         s.rank,
+#                          's_armynumber':   s.army_number,
+#                          's_notes':        s.notes, 
+#                         }
+#    return soldier_record
