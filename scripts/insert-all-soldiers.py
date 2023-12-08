@@ -14,7 +14,7 @@ def run():
     ref_data_url = "https://raw.githubusercontent.com/gm3dmo/old-cmp/main/data/soldier.csv"
     http = urllib3.PoolManager()
     r = http.request('GET', ref_data_url)
-    print(r.status)
+    print(f"""Fetch table response code: {r.status}""")
     # load the response into a csv dictionary reader
     reader = csv.DictReader(r.data.decode('ISO-8859-1').splitlines())
     # breakpoint()
@@ -22,7 +22,7 @@ def run():
     # print(reader.fieldnames)
     for row in reader:
         # id,surname,initials,army_number,rank_id,notes
-        print(f"""{row['id']} {row['surname']}""")
+        #print(f"""{row['id']} {row['surname']}""")
         try:
             Soldier.objects.create(
                 id = row['id'],
@@ -33,6 +33,6 @@ def run():
                 notes = row['notes']
         )
         except Exception as e:
-            print("Error with: " + row['surname'])
+            print(f"""💥row: ({row}) """)
 
             raise e

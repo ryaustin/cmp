@@ -12,10 +12,10 @@ def run():
     print(f"""\033[4;33m{title}\033[0m""")
     print("-" * len(title))
     
-    ref_data_url = "https://raw.githubusercontent.com/gm3dmo/old-cmp/main/data/soldier-death3.csv"
+    ref_data_url = "https://raw.githubusercontent.com/gm3dmo/old-cmp/main/data/soldier-death.csv"
     http = urllib3.PoolManager()
     r = http.request('GET', ref_data_url)
-    print(r.status)
+    print(f"""Fetch table response code: {r.status}""")
     # load the response into a csv dictionary reader
     reader = csv.DictReader(r.data.decode('utf-8').splitlines())
     
@@ -27,7 +27,7 @@ def run():
             if company:
                 company = company.first()
             else:
-                print(f"""row: ({row['id']}) cwgc:({row['cwgc_id']})""")
+                #print(f"""row: ({row['id']}) cwgc:({row['cwgc_id']})""")
                 company = Company.objects.filter(name="UNKNOWN").first()
             cwgc_id = row.get('cwgc_id', 90909) if row.get('cwgc_id') != '' else 90909
             SoldierDeath.objects.create(
